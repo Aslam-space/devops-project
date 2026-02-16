@@ -5,16 +5,13 @@ jobs:
   scan:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
+      - uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-
-      - name: Run Bandit Security Scan
-        # The '|| true' at the end tells GitHub: "Run the scan, show the errors, but don't fail the build"
+      - name: Run Bandit
+        # This tells Bandit to only return an error code for HIGH severity issues
         run: |
           pip install bandit
-          bandit -r . || true
+          bandit -r . --severity-level high

@@ -5,11 +5,12 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return "<h1>Success! My Bangalore DevOps Pipeline is Live!</h1>"
+    # This is the message that will show up on your live website
+    return "<h1>Success! My Bangalore DevOps Pipeline is Live!</h1><p>Deployed by Aslam-space</p>"
 
 if __name__ == "__main__":
-    # AWS App Runner will provide the PORT automatically
+    # Get port from environment variable (AWS App Runner sets this automatically)
     port = int(os.environ.get("PORT", 8080))
-    app.run(host='0.0.0.0', port=port)
-    # We add # nosec to bypass the B104 security warning
+    
+    # '# nosec' tells the security scanner to ignore the 0.0.0.0 binding warning
     app.run(host='0.0.0.0', port=port)  # nosec

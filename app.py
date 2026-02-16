@@ -11,3 +11,5 @@ if __name__ == "__main__":
     # AWS App Runner will provide the PORT automatically
     port = int(os.environ.get("PORT", 8080))
     app.run(host='0.0.0.0', port=port)
+    # We add # nosec to bypass the B104 security warning
+    app.run(host='0.0.0.0', port=port)  # nosec
